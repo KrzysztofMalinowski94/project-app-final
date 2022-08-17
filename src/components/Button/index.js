@@ -1,2 +1,2 @@
-export * from "./Loader";
-export {default} from "./Loader";
+export * from "./Button";
+export {default} from "./Button";

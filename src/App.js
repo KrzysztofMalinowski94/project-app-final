@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Button from "./components/Button/Button";
 import Loader from "./components/Loader";
 import Typography from "./components/Typography";
 
@@ -76,6 +77,24 @@ export class App extends React.Component {
 				>
 					Button
 				</Typography>
+				<Button
+					variant={"contained"}
+					color ={"primary"}
+				>
+					contained primary
+				</Button>
+				<Button
+					variant={"contained"}
+					color ={"secondary"}
+				>
+					contained secondary
+				</Button>
+				<Button
+					variant={"text"}
+					color ={"primary"}
+				>
+					text primary
+				</Button>
 			</div>
 		);}
 }
