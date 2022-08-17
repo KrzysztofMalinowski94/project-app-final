@@ -1,13 +1,14 @@
 import React from "react";
 import "./App.css";
-import { Loader } from "./components/Loader";
+import Loader from "./components/Loader";
+import Typography from "./components/Typography";
 
 export class App extends React.Component {
   
 	state ={
     
 		//GLOBAL STATE
-		isLoading:true,
+		isLoading:false,
 		hasError: false,
 		errorMessage: "",
 		isInfoDisplayed: false,
@@ -42,10 +43,39 @@ export class App extends React.Component {
 	};
 
 	render(){
+
+		const {
+			isLoading,
+			// hasError,
+			// errorMessage,
+			// isInfoDisplayed,
+			// infoMessage,
+		} = this.state;
+
+
 		return (
 			<div className="App">
 				<h1>My App</h1>
-				<Loader/>
+				{
+					isLoading ?
+						<Loader/> : 
+						null
+				}
+				<Typography
+					variant = {"h1"}
+				>
+					HEADER1
+				</Typography>
+				<Typography
+					variant = {"h3"}
+				>
+					HEADER3
+				</Typography>
+				<Typography
+					variant = {"button"}
+				>
+					Button
+				</Typography>
 			</div>
 		);}
 }
