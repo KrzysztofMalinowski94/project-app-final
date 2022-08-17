@@ -5,6 +5,8 @@
     cursor: pointer;
     border-radius: 4px;
     padding: 4px 10px;
+
+    transition: background-color 0.3s ease-in-out;
 }
 
 .contained {
@@ -17,11 +19,20 @@
 .text {
     background-color: transparent;
 }
+.text:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
 
 .secondary.contained {
     background-color: #F0DB4F;
 }
+.secondary.contained:hover {
+    background-color: #f4e685;
+}
 
 .primary.contained {
     background-color: #323330;
+}
+.primary.contained:hover {
+    background-color: #5b5c59;
 }
