@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Button from "./components/Button/Button";
+import FullPageInfo from "./components/FullPageInfo";
 import Loader from "./components/Loader";
 import Typography from "./components/Typography";
 
@@ -13,7 +14,7 @@ export class App extends React.Component {
 		hasError: false,
 		errorMessage: "",
 		isInfoDisplayed: false,
-		infoMessage: "",
+		infoMessage: "INFO",
     
 		//USER/AUTH STATE
 		isUserLoggedIn:false,
@@ -50,7 +51,7 @@ export class App extends React.Component {
 			// hasError,
 			// errorMessage,
 			// isInfoDisplayed,
-			// infoMessage,
+			infoMessage,
 		} = this.state;
 
 
@@ -95,6 +96,11 @@ export class App extends React.Component {
 				>
 					text primary
 				</Button>
+				<FullPageInfo
+					buttonLabel={"GO BACK"}
+					message={infoMessage}
+				/>
+
 			</div>
 		);}
 }
