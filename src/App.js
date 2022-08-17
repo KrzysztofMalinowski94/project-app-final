@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { Loader } from "./components/Loader";
 
 export class App extends React.Component {
   
@@ -43,7 +44,8 @@ export class App extends React.Component {
 	render(){
 		return (
 			<div className="App">
-
+				<h1>My App</h1>
+				<Loader/>
 			</div>
 		);}
 }
