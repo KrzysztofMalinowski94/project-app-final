@@ -1,33 +1,33 @@
-import { makeRequest } from './makeRequest'
-import { getIdToken } from './token'
-import { refreshTokens } from './refreshTokens'
+import { makeRequest } from "./makeRequest";
+import { getIdToken } from "./token";
+import { refreshTokens } from "./refreshTokens";
 
 export const makeAuthorizedRequest = (url, options) => {
-    const token = getIdToken()
+	const token = getIdToken();
 
-    if (!token) return Promise.reject('No token found')
+	if (!token) return Promise.reject("No token found");
 
-    const containsQuestionMark = url.indexOf('?') !== -1
+	const containsQuestionMark = url.indexOf("?") !== -1;
 
-    const urlWithToken = `${url}${containsQuestionMark ? '&' : '?'}auth=${token}`
+	const urlWithToken = `${url}${containsQuestionMark ? "&" : "?"}auth=${token}`;
 
-    return makeRequest(urlWithToken, options)
-        .catch((error) => {
-            const { data, code } = error
-            if(code === 401){
-                return refreshTokens()
-                    .then(() => {
-                        const refreshedToken = getIdToken()
-                        const urlWithRefreshedToken = `${url}${containsQuestionMark ? '&' : '?'}auth=${refreshedToken}`
+	return makeRequest(urlWithToken, options)
+		.catch((error) => {
+			const { code } = error;
+			if(code === 401){
+				return refreshTokens()
+					.then(() => {
+						const refreshedToken = getIdToken();
+						const urlWithRefreshedToken = `${url}${containsQuestionMark ? "&" : "?"}auth=${refreshedToken}`;
 
-                        return makeRequest(urlWithRefreshedToken, options)
-                    })
-                    .catch(() => {
-                        throw error
-                    })
-            }
-            throw error
-        })
-}
+						return makeRequest(urlWithRefreshedToken, options);
+					})
+					.catch(() => {
+						throw error;
+					});
+			}
+			throw error;
+		});
+};
 
-export default makeAuthorizedRequest
+export default makeAuthorizedRequest;
