@@ -114,8 +114,13 @@ export class App extends React.Component {
 						/> :
 						null
 				}
-				<TextField/>
-				<TextField/>
+				<TextField
+					placeholder ={"E-mail"}
+				/>
+				<TextField
+					type = {"password"}
+					placeholder ={"password"}
+				/>
 			</div>
 		);}
 }
