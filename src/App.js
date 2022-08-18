@@ -1,9 +1,10 @@
 import React from "react";
 import "./App.css";
 import Button from "./components/Button/Button";
-import FullPageInfo from "./components/FullPageInfo";
-import Loader from "./components/Loader";
 import Typography from "./components/Typography";
+import FullPageLoader from "./components/FullPageLoader";
+import FullPageMessage from "./components/FullPageMessage";
+import TextField from "./components/TextField/TextField";
 
 export class App extends React.Component {
   
@@ -13,7 +14,7 @@ export class App extends React.Component {
 		isLoading:false,
 		hasError: false,
 		errorMessage: "ERROR",
-		isInfoDisplayed: true,
+		isInfoDisplayed: false,
 		infoMessage: "INFO",
     
 		//USER/AUTH STATE
@@ -60,7 +61,7 @@ export class App extends React.Component {
 				<h1>My App</h1>
 				{
 					isLoading ?
-						<Loader/> : 
+						<FullPageLoader/> : 
 						null
 				}
 				<Typography
@@ -98,14 +99,14 @@ export class App extends React.Component {
 				</Button>
 
 				{hasError ?
-					<FullPageInfo
+					<FullPageMessage
 						actionClick={console.log("Click")}
 						buttonLabel={"GO BACK"}
 						message={errorMessage}
 						iconVariant = {"error"}
 					/> :
 					isInfoDisplayed ?
-						<FullPageInfo
+						<FullPageMessage
 							actionClick={console.log("Click")}
 							buttonLabel={"GO BACK"}
 							message={infoMessage}
@@ -113,7 +114,8 @@ export class App extends React.Component {
 						/> :
 						null
 				}
-
+				<TextField/>
+				<TextField/>
 			</div>
 		);}
 }

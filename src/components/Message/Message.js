@@ -7,7 +7,7 @@ import Button from "../Button";
 import InfoIcon from "../../svg/InfoIcon";
 import ErrorIcon from "../../svg/ErrorIcon";
 
-export const FullPageInfo =(props)=> {
+export const Message = (props) => {
 
 	const {
 		buttonLabel,
@@ -52,7 +52,7 @@ export const FullPageInfo =(props)=> {
 	);
 };
 
-FullPageInfo.propTypes ={ 
+Message.propTypes ={ 
 	className: PropTypes.string,
 	actionClick: PropTypes.func.isRequired,
 	variant: PropTypes.oneOf(["contained","text"]),
@@ -64,4 +64,4 @@ FullPageInfo.propTypes ={
 
 };
 
-export default FullPageInfo;
+export default Message;
