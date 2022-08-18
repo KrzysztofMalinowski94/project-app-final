@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import Typography from "../Typography";
 import Button from "../Button";
 import InfoIcon from "../../svg/InfoIcon";
+import ErrorIcon from "../../svg/ErrorIcon";
 
 export const FullPageInfo =(props)=> {
 
@@ -14,7 +15,8 @@ export const FullPageInfo =(props)=> {
 		className,
 		variant,
 		color,
-		// eslint-disable-next-line no-unused-vars
+		iconVariant = "info",
+		actionClick,
 		...otherProps
 	}=props;
 
@@ -23,15 +25,23 @@ export const FullPageInfo =(props)=> {
 	return (
 		<div
 			className={`${styles.root}${className ? ` ${className}` : "" }${variantClass ? ` ${variantClass}` : ""}${colorClass ? ` ${colorClass}` : ""}`}
+			{...otherProps}
 		>
 		
 			<div className={styles.wrapper}>
-				<InfoIcon/>
+				{
+					iconVariant === "info" ?
+						<InfoIcon/> :
+						iconVariant === "error" ?
+							<ErrorIcon/> :
+							null
+				}
 				<Typography
 					variant={"h3"}>
 					{message}
 				</Typography>
 				<Button
+					actionClick={actionClick}
 					variant={"contained"}
 					color={"primary"}
 				>
@@ -44,12 +54,13 @@ export const FullPageInfo =(props)=> {
 
 FullPageInfo.propTypes ={ 
 	className: PropTypes.string,
-	// onClick: PropTypes.func.isRequired,
+	actionClick: PropTypes.func.isRequired,
 	variant: PropTypes.oneOf(["contained","text"]),
 	color: PropTypes.oneOf(["primary","secondary"]),
 	children: PropTypes.node,
 	buttonLabel: PropTypes.string,
-	message:PropTypes.string
+	message:PropTypes.string,
+	iconVariant: PropTypes.oneOf(["info","error"])
 
 };
 

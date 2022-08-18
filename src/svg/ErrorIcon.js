@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const SvgComponent = (props) => (
+const ErrorIcon = (props) => (
 	<svg
 		width={84}
 		height={84}
@@ -16,4 +16,4 @@ const SvgComponent = (props) => (
 	</svg>
 );
 
-export default SvgComponent;
+export default ErrorIcon;

@@ -11,7 +11,6 @@ export const Button =(props)=> {
 		variant,
 		color,
 		children,
-		// eslint-disable-next-line no-unused-vars
 		...otherProps
 	}=props;
 
@@ -19,7 +18,9 @@ export const Button =(props)=> {
 	const colorClass = styles[color];
 	return (
 		<button
+
 			className={`${styles.root}${className ? ` ${className}` : "" }${variantClass ? ` ${variantClass}` : ""}${colorClass ? ` ${colorClass}` : ""}`}
+			{...otherProps}
 		>
 			<Typography
 				variant={"button"}>

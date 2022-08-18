@@ -12,8 +12,8 @@ export class App extends React.Component {
 		//GLOBAL STATE
 		isLoading:false,
 		hasError: false,
-		errorMessage: "",
-		isInfoDisplayed: false,
+		errorMessage: "ERROR",
+		isInfoDisplayed: true,
 		infoMessage: "INFO",
     
 		//USER/AUTH STATE
@@ -48,9 +48,9 @@ export class App extends React.Component {
 
 		const {
 			isLoading,
-			// hasError,
-			// errorMessage,
-			// isInfoDisplayed,
+			hasError,
+			errorMessage,
+			isInfoDisplayed,
 			infoMessage,
 		} = this.state;
 
@@ -96,10 +96,23 @@ export class App extends React.Component {
 				>
 					text primary
 				</Button>
-				<FullPageInfo
-					buttonLabel={"GO BACK"}
-					message={infoMessage}
-				/>
+
+				{hasError ?
+					<FullPageInfo
+						actionClick={console.log("Click")}
+						buttonLabel={"GO BACK"}
+						message={errorMessage}
+						iconVariant = {"error"}
+					/> :
+					isInfoDisplayed ?
+						<FullPageInfo
+							actionClick={console.log("Click")}
+							buttonLabel={"GO BACK"}
+							message={infoMessage}
+							iconVariant = {"info"}
+						/> :
+						null
+				}
 
 			</div>
 		);}
