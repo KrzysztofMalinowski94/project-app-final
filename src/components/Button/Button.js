@@ -7,7 +7,6 @@ import Typography from "../Typography";
 export const Button =(props)=> {
 
 	const {
-		actionClick,
 		className,
 		variant,
 		color,
@@ -19,7 +18,6 @@ export const Button =(props)=> {
 	const colorClass = styles[color];
 	return (
 		<button
-			onClick={actionClick}
 			className={`${styles.root}${className ? ` ${className}` : "" }${variantClass ? ` ${variantClass}` : ""}${colorClass ? ` ${colorClass}` : ""}`}
 			{...otherProps}
 		>
@@ -33,7 +31,6 @@ export const Button =(props)=> {
 
 Button.propTypes ={ 
 	className: PropTypes.string,
-	actionClick: PropTypes.func.isRequired,
 	variant: PropTypes.oneOf(["contained","text"]),
 	color: PropTypes.oneOf(["primary","secondary"]),
 	children: PropTypes.node
