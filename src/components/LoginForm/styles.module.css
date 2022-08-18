@@ -1,0 +1,22 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    margin-bottom: 30px;
+}
+.greeter{
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
+}
+.textfield{
+    box-sizing: border-box;
+    width: 220px;
+    margin-bottom: 10px;
+}
+.btn{
+    width: 220px;
+    margin-bottom: 10px;
+}
