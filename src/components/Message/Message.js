@@ -16,7 +16,7 @@ export const Message = (props) => {
 		variant,
 		color,
 		iconVariant = "info",
-		actionClick,
+		onBackToLoginClick,
 		...otherProps
 	}=props;
 
@@ -41,7 +41,7 @@ export const Message = (props) => {
 					{message}
 				</Typography>
 				<Button
-					actionClick={actionClick}
+					onClick={onBackToLoginClick}
 					variant={"contained"}
 					color={"primary"}
 				>
@@ -60,8 +60,8 @@ Message.propTypes ={
 	children: PropTypes.node,
 	buttonLabel: PropTypes.string,
 	message:PropTypes.string,
-	iconVariant: PropTypes.oneOf(["info","error"])
-
+	iconVariant: PropTypes.oneOf(["info","error"]),
+	onBackToLoginClick: PropTypes.func.isRequired
 };
 
 export default Message;

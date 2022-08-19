@@ -46,22 +46,29 @@ export class App extends React.Component {
 		//COURSES STATE
 		courses: null,
 		searchPhrase:"",
-
 	};
 
-	onClickLogin = async() => {		
+	onLoginClick = async() => {		
 		this.setState(()=>({isLoading: true}));
 		try {			
 			await signIn(this.state.loginEmail, this.state.loginPassword);
 		} catch (error) {
 			this.setState(()=>({
 				hasError: true,
-				errorMessage: JSON.stringify(error)
+				errorMessage: error.data.error.message
 			}));
 
 		} finally {
 			this.setState(()=> ({isLoading: false}));
 		}
+	};
+
+	dismissError=()=>{
+
+		this.setState(()=>({
+			hasError:false,
+			errorMessage:""
+		}));
 	};
 
 	render(){
@@ -90,54 +97,54 @@ export class App extends React.Component {
 							buttonLabel={"GO BACK"}
 							message={errorMessage}
 							iconVariant = {"error"}
+							onBackToLoginClick = { this.dismissError}
 						/> :
 						isInfoDisplayed ?
 							<FullPageMessage
 								buttonLabel={"GO BACK"}
 								message={infoMessage}
 								iconVariant = {"info"}
+								onBackToLoginClick = { this.dismissError}
+
 							/> :
 							isLoading ?
 								<FullPageLoader/> :
-								null
-				}
-				{
-					notLoginRoute === "LOGIN" ?
+								notLoginRoute === "LOGIN" ?
 						
-						<FullPageLayout>
-							<LoginForm
-								email={loginEmail}
-								password={loginPassword}
-								onLoginClick = {()=>console.log("onLoginClick")}
-								onCreateAccountClick = {()=> this.setState(()=>({notLoginRoute: "CREATE-ACCOUNT"}))}
-								onRecoveryPasswordClick = {()=> this.setState(()=>({notLoginRoute: "FORGOT PASSWORD"}))}
-								onChangeEmail = {(e)=>this.setState(()=>({loginEmail: e.target.value}))}
-								onChangePassword = {(e)=>this.setState(()=>({loginPassword: e.target.value}))}
-							/>
-						</FullPageLayout> :
-						notLoginRoute === "CREATE-ACCOUNT" ?
-							<FullPageLayout>
-								<CreateAccountForm
-									email={createAccountEmail}
-									password={createAccountPassword}
-									passwordRepeat={createAccountPasswordRepeat}
-									onChangeEmail={ (e)=> this.setState(()=>({createAccountEmail: e.target.value}))}
-									onChangePassword={ (e)=> this.setState(()=>({createAccountPassword: e.target.value}))}
-									onChangePasswordRepeat={ (e)=> this.setState(()=>({createAccountPasswordRepeat: e.target.value}))}
-									onCreateAccountClick = { ()=> console.log("onCreateAccountClick")} 
-									onBackToLoginClick = { ()=> this.setState(()=>({notLoginRoute: "LOGIN"}))}
-								/>
-							</FullPageLayout> :
-							notLoginRoute === "FORGOT PASSWORD" ?
-								<FullPageLayout>
-									<RecoveryPasswordForm
-										email={recoverPasswordEmail}
-										onChangeRecoverPasswordEmail={(e)=>this.setState(()=>({recoverPasswordEmail: e.target.value}))}
-										onRecoverClick={()=>console.log("onRecoverClick")}
-										onBackToLoginClick={()=> this.setState(()=>({notLoginRoute: "LOGIN"}))}
-									/>
-								</FullPageLayout> :
-								null
+									<FullPageLayout>
+										<LoginForm
+											email={loginEmail}
+											password={loginPassword}
+											onLoginClick = {this.onLoginClick}
+											onCreateAccountClick = {()=> this.setState(()=>({notLoginRoute: "CREATE-ACCOUNT"}))}
+											onRecoveryPasswordClick = {()=> this.setState(()=>({notLoginRoute: "FORGOT PASSWORD"}))}
+											onChangeEmail = {(e)=>this.setState(()=>({loginEmail: e.target.value}))}
+											onChangePassword = {(e)=>this.setState(()=>({loginPassword: e.target.value}))}
+										/>
+									</FullPageLayout> :
+									notLoginRoute === "CREATE-ACCOUNT" ?
+										<FullPageLayout>
+											<CreateAccountForm
+												email={createAccountEmail}
+												password={createAccountPassword}
+												passwordRepeat={createAccountPasswordRepeat}
+												onChangeEmail={ (e)=> this.setState(()=>({createAccountEmail: e.target.value}))}
+												onChangePassword={ (e)=> this.setState(()=>({createAccountPassword: e.target.value}))}
+												onChangePasswordRepeat={ (e)=> this.setState(()=>({createAccountPasswordRepeat: e.target.value}))}
+												onCreateAccountClick = { ()=> console.log("onCreateAccountClick")} 
+												onBackToLoginClick = { ()=> this.setState(()=>({notLoginRoute: "LOGIN"}))}
+											/>
+										</FullPageLayout> :
+										notLoginRoute === "FORGOT PASSWORD" ?
+											<FullPageLayout>
+												<RecoveryPasswordForm
+													email={recoverPasswordEmail}
+													onChangeRecoverPasswordEmail={(e)=>this.setState(()=>({recoverPasswordEmail: e.target.value}))}
+													onRecoverClick={()=>console.log("onRecoverClick")}
+													onBackToLoginClick={()=> this.setState(()=>({notLoginRoute: "LOGIN"}))}
+												/>
+											</FullPageLayout> :
+											null
 				}
 			</div>
 		);}
