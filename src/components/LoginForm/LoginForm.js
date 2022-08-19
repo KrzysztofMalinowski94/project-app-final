@@ -13,6 +13,7 @@ export const LoginForm = (props) => {
 	const {
 		className,
 		email,
+		emailError,
 		password,
 		onLoginClick,
 		onCreateAccountClick,
@@ -37,6 +38,7 @@ export const LoginForm = (props) => {
 			</Typography>
 			<TextField
 				className={classes.textfield}
+				errorMessage={emailError}
 				placeholder= {"E-mail"}
 				value={email}
 				onChange={onChangeEmail}
@@ -77,7 +79,8 @@ LoginForm.propTypes = {
 	onCreateAccountClick:PropTypes.func.isRequired,
 	onRecoveryPasswordClick:PropTypes.func.isRequired,
 	onChangeEmail:PropTypes.func.isRequired,
-	onChangePassword:PropTypes.func.isRequired
+	onChangePassword:PropTypes.func.isRequired,
+	emailError:PropTypes.string
 };
 
 export default LoginForm;

@@ -34,6 +34,7 @@ export class App extends React.Component {
 
 		//LOGIN PAGE STATE
 		loginEmail:"",
+		loginEmailError:"",
 		loginPassword:"",
 
 
@@ -83,6 +84,7 @@ export class App extends React.Component {
 			infoMessage,
 			notLoginRoute,
 			loginEmail,
+			loginEmailError,
 			loginPassword,
 			createAccountEmail,
 			createAccountPassword,
@@ -116,13 +118,16 @@ export class App extends React.Component {
 									<FullPageLayout>
 										<LoginForm
 											email={loginEmail}
+											emailError={loginEmailError}
 											password={loginPassword}
 											onLoginClick = {this.onLoginClick}
 											onCreateAccountClick = {()=> this.setState(()=>({notLoginRoute: "CREATE-ACCOUNT"}))}
 											onRecoveryPasswordClick = {()=> this.setState(()=>({notLoginRoute: "FORGOT PASSWORD"}))}
 											onChangeEmail = {(e)=>{
-												console.log(isEmail(e.target.value));
-												this.setState(()=>({loginEmail: e.target.value}));
+												this.setState(()=>({
+													loginEmail: e.target.value,
+													loginEmailError: isEmail(e.target.value) ? "" : "Invalid Email"
+												}));
 											}}
 											onChangePassword = {(e)=>this.setState(()=>({loginPassword: e.target.value}))}
 										/>
