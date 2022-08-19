@@ -1,4 +1,6 @@
 import React from "react";
+import isEmail from "validator/lib/isEmail";
+
 import "./App.css";
 
 import LoginForm from "./components/LoginForm";
@@ -118,7 +120,10 @@ export class App extends React.Component {
 											onLoginClick = {this.onLoginClick}
 											onCreateAccountClick = {()=> this.setState(()=>({notLoginRoute: "CREATE-ACCOUNT"}))}
 											onRecoveryPasswordClick = {()=> this.setState(()=>({notLoginRoute: "FORGOT PASSWORD"}))}
-											onChangeEmail = {(e)=>this.setState(()=>({loginEmail: e.target.value}))}
+											onChangeEmail = {(e)=>{
+												console.log(isEmail(e.target.value));
+												this.setState(()=>({loginEmail: e.target.value}));
+											}}
 											onChangePassword = {(e)=>this.setState(()=>({loginPassword: e.target.value}))}
 										/>
 									</FullPageLayout> :

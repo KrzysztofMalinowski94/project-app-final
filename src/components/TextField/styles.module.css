@@ -19,7 +19,7 @@
     width: 220px;
     height: 40px;
     outline: none;
-    margin:0
+    margin-bottom:10px
 }
 
 .input.hasError {
@@ -29,7 +29,6 @@
 .errorMessage{
     width: 100%;
     color:red;
-    margin: 10px;
     padding-left: 12px;
     font-size: 10px;
 }

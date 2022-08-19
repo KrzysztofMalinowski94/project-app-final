@@ -6,7 +6,7 @@ import classes from "./styles.module.css";
 export const TextField = (props) => {
 	const {
 		className,
-		errorMessage = "Error",
+		errorMessage,
 		...otherProps
 	} = props;
 
