@@ -8,6 +8,7 @@ import FullPageLayout from "./components/FullPageLayout";
 import CreateAccountForm from "./components/CreateAccountForm/CreateAccountForm";
 import RecoveryPasswordForm from "./components/RecoveryPasswordForm/RecoveryPasswordForm";
 
+import {signIn} from "./auth";
 
 export class App extends React.Component {
   
@@ -46,6 +47,21 @@ export class App extends React.Component {
 		courses: null,
 		searchPhrase:"",
 
+	};
+
+	onClickLogin = async() => {		
+		this.setState(()=>({isLoading: true}));
+		try {			
+			await signIn(this.state.loginEmail, this.state.loginPassword);
+		} catch (error) {
+			this.setState(()=>({
+				hasError: true,
+				errorMessage: JSON.stringify(error)
+			}));
+
+		} finally {
+			this.setState(()=> ({isLoading: false}));
+		}
 	};
 
 	render(){

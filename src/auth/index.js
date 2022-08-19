@@ -10,4 +10,3 @@ export * from "./makeAuthorizedRequest";
 export * from "./refreshTokens";
 export * from "./checkIfUserIsLoggedIn";
 export * from "./logOut";
-export { default } from "./Auth";
