@@ -1,4 +1,9 @@
-.root {
+.root{
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
     border: 1px solid rgba(0, 0, 0, 0.23);
     border-radius: 4px;
     font-family: 'Roboto';
@@ -14,4 +19,17 @@
     width: 220px;
     height: 40px;
     outline: none;
+    margin:0
+}
+
+.input.hasError {
+    border: 1px solid red;
+  }
+
+.errorMessage{
+    width: 100%;
+    color:red;
+    margin: 10px;
+    padding-left: 12px;
+    font-size: 10px;
 }
