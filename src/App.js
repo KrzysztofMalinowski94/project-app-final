@@ -36,6 +36,7 @@ export class App extends React.Component {
 		loginEmail:"",
 		loginEmailError:"",
 		loginPassword:"",
+		loginPasswordError:"",
 		loginSubmitted:false,
 
 
@@ -91,6 +92,7 @@ export class App extends React.Component {
 			loginEmail,
 			loginEmailError,
 			loginPassword,
+			loginPasswordError,
 			loginSubmitted,
 			createAccountEmail,
 			createAccountPassword,
@@ -126,6 +128,7 @@ export class App extends React.Component {
 											email={loginEmail}
 											emailError={loginSubmitted ? loginEmailError : undefined}
 											password={loginPassword}
+											passwordError={loginSubmitted ? loginPasswordError : undefined}
 											onLoginClick = {this.onLoginClick}
 											onCreateAccountClick = {()=> this.setState(()=>({notLoginRoute: "CREATE-ACCOUNT"}))}
 											onRecoveryPasswordClick = {()=> this.setState(()=>({notLoginRoute: "FORGOT PASSWORD"}))}
@@ -135,7 +138,10 @@ export class App extends React.Component {
 													loginEmailError: isEmail(e.target.value) ? "" : "Invalid Email"
 												}));
 											}}
-											onChangePassword = {(e)=>this.setState(()=>({loginPassword: e.target.value}))}
+											onChangePassword = {(e)=>this.setState(()=>({
+												loginPassword: e.target.value,
+												loginPasswordError: e.target.value.length >= 6 ? "" : "Password must have min. 6 chars"
+											}))}
 										/>
 									</FullPageLayout> :
 									notLoginRoute === "CREATE-ACCOUNT" ?
