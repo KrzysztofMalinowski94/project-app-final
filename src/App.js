@@ -1,7 +1,8 @@
 import React from "react";
 import isEmail from "validator/lib/isEmail";
 
-import "./App.css";
+import classes from "./styles.module.css";
+
 
 import LoginForm from "./components/LoginForm";
 import FullPageLoader from "./components/FullPageLoader";
@@ -189,6 +190,9 @@ export class App extends React.Component {
 			recoverPasswordEmailError,
 			recoverPasswordEmailSubmitted,
 			isUserLoggedIn,
+			userDisplayName,
+			userEmail,
+			userAvatar,
 		} = this.state;
 
 
@@ -215,8 +219,14 @@ export class App extends React.Component {
 
 								isUserLoggedIn ? 
 									<AppBar>
-										<Logo/>
-										<UserDropdown/>
+										<Logo
+											className={classes.logo}
+										/>
+										<UserDropdown
+											userDisplayName={userDisplayName}
+											userEmail={userEmail}
+											userAvatar={userAvatar}
+										/>
 									</AppBar>
 									:
 									notLoginRoute === "LOGIN" ?

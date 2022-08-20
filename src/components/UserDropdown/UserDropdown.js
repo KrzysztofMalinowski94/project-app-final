@@ -6,6 +6,9 @@ import classes from "./styles.module.css";
 export const UserDropdown = (props) => {
 	const {
 		className,
+		userDisplayName,
+		userEmail,
+		// userAvatar,
 		...otherProps
 	} = props;
 
@@ -15,8 +18,8 @@ export const UserDropdown = (props) => {
 			{...otherProps}
 		>
 			<div>
-				<p>NAME</p>
-				<p>EMAIL</p>
+				<p>{userDisplayName}</p>
+				<p>{userEmail}</p>
 			</div>
 			<div>
         IMG
@@ -26,7 +29,10 @@ export const UserDropdown = (props) => {
 };
 
 UserDropdown.propTypes = {
-	className: PropTypes.string
+	className: PropTypes.string,
+	userDisplayName: PropTypes.string,
+	userEmail: PropTypes.string,
+	userAvatar: PropTypes.img,
 };
 
 export default UserDropdown;
