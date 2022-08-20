@@ -36,6 +36,7 @@ export class App extends React.Component {
 		loginEmail:"",
 		loginEmailError:"",
 		loginPassword:"",
+		loginSubmitted:false,
 
 
 		//CREATE ACCOUNT STATE
@@ -52,6 +53,10 @@ export class App extends React.Component {
 	};
 
 	onLoginClick = async() => {		
+		this.setState(()=>({loginSubmitted:true}));
+
+		if(this.state.loginEmailError) return;
+
 		this.setState(()=>({isLoading: true}));
 		try {			
 			await signIn(this.state.loginEmail, this.state.loginPassword);
@@ -86,6 +91,7 @@ export class App extends React.Component {
 			loginEmail,
 			loginEmailError,
 			loginPassword,
+			loginSubmitted,
 			createAccountEmail,
 			createAccountPassword,
 			createAccountPasswordRepeat,
@@ -118,7 +124,7 @@ export class App extends React.Component {
 									<FullPageLayout>
 										<LoginForm
 											email={loginEmail}
-											emailError={loginEmailError}
+											emailError={loginSubmitted ? loginEmailError : undefined}
 											password={loginPassword}
 											onLoginClick = {this.onLoginClick}
 											onCreateAccountClick = {()=> this.setState(()=>({notLoginRoute: "CREATE-ACCOUNT"}))}
