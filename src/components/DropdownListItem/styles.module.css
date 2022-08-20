@@ -1,0 +1,37 @@
+.root {
+    width: 100%;
+    display: flex;
+    padding: 12px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.root:hover {
+    background-color: #ebebea;
+  }
+.root.disabled{
+    cursor: default;
+}
+.root.disabled:hover {
+    background-color: inherit;
+  }
+
+.iconWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 32px;
+}
+
+.textWrapper{
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+}
+
+.text {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.root.disabled  .text {
+  color: rgba(0, 0, 0, 0.38);
+}

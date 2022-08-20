@@ -15,6 +15,7 @@ import {signIn, signUp, getIdToken, decodeToken, checkIfUserIsLoggedIn, sendPass
 import AppBar from "./components/AppBar/AppBar";
 import Logo from "./svg/Logo";
 import UserDropdown from "./components/UserDropdown/UserDropdown";
+import DropdownList from "./components/DropdownList/DropdownList";
 
 export class App extends React.Component {
   
@@ -229,11 +230,14 @@ export class App extends React.Component {
 											/>
 											<UserDropdown
 												onClick={()=>this.setState((prevState)=>({isUserDropdownOpen: !prevState.isUserDropdownOpen}))}
-												contentList={isUserDropdownOpen ? "contentList contentList" : null}
 												className={classes.userDropdown}
 												userDisplayName={userDisplayName}
 												userEmail={userEmail}
 												userAvatar={userAvatar}
+												contentList={
+													isUserDropdownOpen ?
+														<DropdownList/> 
+														: null}
 											/>
 										</AppBar>
 									</div>
