@@ -10,7 +10,7 @@ import FullPageLayout from "./components/FullPageLayout";
 import CreateAccountForm from "./components/CreateAccountForm/CreateAccountForm";
 import RecoveryPasswordForm from "./components/RecoveryPasswordForm/RecoveryPasswordForm";
 
-import {signIn, signUp, getIdToken, decodeToken, checkIfUserIsLoggedIn} from "./auth";
+import {signIn, signUp, getIdToken, decodeToken, checkIfUserIsLoggedIn, sendPasswordResetEmail} from "./auth";
 
 export class App extends React.Component {
   
@@ -117,7 +117,11 @@ export class App extends React.Component {
 
 		this.setState(()=>({isLoading: true}));
 		try {			
-			// await signIn(this.state.loginEmail, this.state.loginPassword);
+			await sendPasswordResetEmail(this.state.recoverPasswordEmail);
+			this.setState(()=>({
+				isInfoDisplayed:true,
+				infoMessage:"Check your inbox"
+			}));
 		} catch (error) {
 			this.setState(()=>({
 				hasError: true,
