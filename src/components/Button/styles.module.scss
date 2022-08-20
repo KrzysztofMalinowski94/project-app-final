@@ -21,9 +21,9 @@
 
 .text {
     background-color: transparent;
-}
-.text:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
 }
 
 .secondary.contained {

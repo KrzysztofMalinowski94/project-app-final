@@ -36,6 +36,9 @@ export class App extends React.Component {
 		//
 		notLoginRoute: "LOGIN", // 'CREATE-ACCOUNT or FORGOT PASSWORD'
 
+		//USER DROPDOWN STATE
+		isUserDropdownOpen:false,
+
 		//LOGIN PAGE STATE
 		loginEmail:"",
 		loginEmailError:"",
@@ -193,6 +196,7 @@ export class App extends React.Component {
 			userDisplayName,
 			userEmail,
 			userAvatar,
+			isUserDropdownOpen
 		} = this.state;
 
 
@@ -218,16 +222,21 @@ export class App extends React.Component {
 								<FullPageLoader/> :
 
 								isUserLoggedIn ? 
-									<AppBar>
-										<Logo
-											className={classes.logo}
-										/>
-										<UserDropdown
-											userDisplayName={userDisplayName}
-											userEmail={userEmail}
-											userAvatar={userAvatar}
-										/>
-									</AppBar>
+									<div>
+										<AppBar>
+											<Logo
+												className={classes.logo}
+											/>
+											<UserDropdown
+												onClick={()=>this.setState((prevState)=>({isUserDropdownOpen: !prevState.isUserDropdownOpen}))}
+												contentList={isUserDropdownOpen ? "contentList contentList" : null}
+												className={classes.userDropdown}
+												userDisplayName={userDisplayName}
+												userEmail={userEmail}
+												userAvatar={userAvatar}
+											/>
+										</AppBar>
+									</div>
 									:
 									notLoginRoute === "LOGIN" ?
 									//LOGIN FORM
