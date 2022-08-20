@@ -3,10 +3,9 @@ import PropTypes from "prop-types";
 
 import classes from "./styles.module.css";
 
-export const AppBar = (props) => {
+export const UserDropdown = (props) => {
 	const {
 		className,
-		children,
 		...otherProps
 	} = props;
 
@@ -15,18 +14,19 @@ export const AppBar = (props) => {
 			className={`${classes.root}${className ? ` ${className}` : ""}`}
 			{...otherProps}
 		>
-			<div
-				className={classes.container}
-			>
-				{children}
+			<div>
+				<p>NAME</p>
+				<p>EMAIL</p>
+			</div>
+			<div>
+        IMG
 			</div>
 		</div>
 	);
 };
 
-AppBar.propTypes = {
-	className: PropTypes.string,
-	children: PropTypes.node
+UserDropdown.propTypes = {
+	className: PropTypes.string
 };
 
-export default AppBar;
+export default UserDropdown;

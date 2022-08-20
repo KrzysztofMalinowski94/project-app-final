@@ -11,6 +11,9 @@ import CreateAccountForm from "./components/CreateAccountForm/CreateAccountForm"
 import RecoveryPasswordForm from "./components/RecoveryPasswordForm/RecoveryPasswordForm";
 
 import {signIn, signUp, getIdToken, decodeToken, checkIfUserIsLoggedIn, sendPasswordResetEmail} from "./auth";
+import AppBar from "./components/AppBar/AppBar";
+import Logo from "./svg/Logo";
+import UserDropdown from "./components/UserDropdown/UserDropdown";
 
 export class App extends React.Component {
   
@@ -211,7 +214,10 @@ export class App extends React.Component {
 								<FullPageLoader/> :
 
 								isUserLoggedIn ? 
-									"USER LOGGED IN" 
+									<AppBar>
+										<Logo/>
+										<UserDropdown/>
+									</AppBar>
 									:
 									notLoginRoute === "LOGIN" ?
 									//LOGIN FORM
