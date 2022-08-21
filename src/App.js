@@ -1,9 +1,6 @@
 import React from "react";
 import isEmail from "validator/lib/isEmail";
 
-import classes from "./styles.module.css";
-
-
 import LoginForm from "./components/LoginForm";
 import FullPageLoader from "./components/FullPageLoader";
 import FullPageMessage from "./components/FullPageMessage";
@@ -12,13 +9,8 @@ import CreateAccountForm from "./components/CreateAccountForm/CreateAccountForm"
 import RecoveryPasswordForm from "./components/RecoveryPasswordForm/RecoveryPasswordForm";
 
 import {signIn, signUp, getIdToken, decodeToken, checkIfUserIsLoggedIn, sendPasswordResetEmail, logOut} from "./auth";
-import Logo from "./svg/Logo";
-import UserDropdown from "./components/UserDropdown/UserDropdown";
-import DropdownList from "./components/DropdownList/DropdownList";
 import getAll from "./api/courses/getAll";
-import CoursesList from "./components/CoursesList";
-import MainLayout from "./components/MainLayout/MainLayout";
-import TextField from "./components/TextField/TextField";
+import PageCoursesList from "./pages/PageCoursesList/PageCoursesList";
 
 export class App extends React.Component {
   
@@ -39,9 +31,6 @@ export class App extends React.Component {
 
 		//
 		notLoginRoute: "LOGIN", // 'CREATE-ACCOUNT or FORGOT PASSWORD'
-
-		//USER DROPDOWN STATE
-		isUserDropdownOpen:false,
 
 		//LOGIN PAGE STATE
 		loginEmail:"",
@@ -67,7 +56,6 @@ export class App extends React.Component {
 
 		//COURSES STATE
 		courses: null,
-		searchPhrase:"",
 	};
 
 	async componentDidMount(){
@@ -229,19 +217,8 @@ export class App extends React.Component {
 			userDisplayName,
 			userEmail,
 			userAvatar,
-			isUserDropdownOpen,
 			courses,
-			searchPhrase
-		} = this.state;
-
-		const searchPhraseUpperCase = searchPhrase.toUpperCase();
-		const filteredCourses = courses && courses.filter((course)=>{
-			return (
-				course.title.toUpperCase().includes(searchPhraseUpperCase) ||
-				course.category.toUpperCase().includes(searchPhraseUpperCase) ||
-				course.description.toUpperCase().includes(searchPhraseUpperCase)
-			);
-		});
+		} = this.state;		
 
 		return (
 			<div className="App">
@@ -265,48 +242,13 @@ export class App extends React.Component {
 								<FullPageLoader/> :
 
 								isUserLoggedIn ? 
-									<div>
-										<MainLayout
-											contentAppBar={
-												<>
-													<Logo
-														className={classes.logo}
-													/>
-													<UserDropdown
-														onOpenRequest={()=>this.setState(()=>({isUserDropdownOpen:true}))}
-														onCloseRequest={()=>this.setState(()=>({isUserDropdownOpen:false}))}
-														className={classes.userDropdown}
-														userDisplayName={userDisplayName}
-														userEmail={userEmail}
-														userAvatar={userAvatar}
-														contentList={
-															isUserDropdownOpen ?
-																<DropdownList
-																	onLogOutClick={this.logOutClick}
-																/> 
-																: null}
-													/>
-												</>}
-											contentSearch={
-												<TextField
-													className={classes.searchTextfield}
-													placeholder={"Type to Search..."}
-													value={searchPhrase}
-													onChange={(e)=>this.setState(()=>({searchPhrase: e.target.value}))}
-												/>
-											}
-											contentMain= {
-												<>
-													<CoursesList
-														courses={filteredCourses}
-													/>		
-												</>
-											}
-											
-										>
-										</MainLayout>
-										
-									</div>
+									<PageCoursesList
+										userDisplayName={userDisplayName}
+										userEmail={userEmail}
+										userAvatar={userAvatar}
+										courses={courses}
+										logOutClick={this.logOutClick}
+									/>
 									:
 									notLoginRoute === "LOGIN" ?
 									//LOGIN FORM
