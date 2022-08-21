@@ -17,13 +17,15 @@ export const CoursesList = (props) => {
 			{...otherProps}
 		>										
 			{
-				courses &&  courses.map((course)=>{
-					return(
-						<CourseCard
-							key={course.id}
-							course={course}
-						/>);
-				})}
+				courses.length === 0 ?
+					"NO COURSES" :
+					courses &&  courses.map((course)=>{
+						return(
+							<CourseCard
+								key={course.id}
+								course={course}
+							/>);
+					})}
 		</div>
 	);
 };
