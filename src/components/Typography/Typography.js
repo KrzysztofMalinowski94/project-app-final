@@ -27,7 +27,7 @@ Typography.propTypes = {
 	className: PropTypes.string,
 	children: PropTypes.node,
 	variant: PropTypes.oneOf([
-		"h1","h3","button","textFontStyle1", "caption"]
+		"h1","h3","button","textFontStyle1","textFontStyle2", "caption"]
 	)
 };
 

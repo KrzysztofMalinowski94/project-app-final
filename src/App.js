@@ -11,11 +11,13 @@ import FullPageLayout from "./components/FullPageLayout";
 import CreateAccountForm from "./components/CreateAccountForm/CreateAccountForm";
 import RecoveryPasswordForm from "./components/RecoveryPasswordForm/RecoveryPasswordForm";
 
-import {signIn, signUp, getIdToken, decodeToken, checkIfUserIsLoggedIn, sendPasswordResetEmail} from "./auth";
+import {signIn, signUp, getIdToken, decodeToken, checkIfUserIsLoggedIn, sendPasswordResetEmail, logOut} from "./auth";
 import AppBar from "./components/AppBar/AppBar";
 import Logo from "./svg/Logo";
 import UserDropdown from "./components/UserDropdown/UserDropdown";
 import DropdownList from "./components/DropdownList/DropdownList";
+import getAll from "./api/courses/getAll";
+import CourseCard from "./components/CourseCard";
 
 export class App extends React.Component {
   
@@ -152,8 +154,27 @@ export class App extends React.Component {
 			userEmail:user.email,
 			userAvatar:"",
 		}));
+
+		this.fetchCourses();
 	};
 
+	fetchCourses =async()=>{
+		try{
+			this.setState(()=>({isLoading: true}));
+			const dbCourses = await getAll();
+			this.setState(()=>({
+				courses: dbCourses,
+			}));
+		}catch (error) {
+			this.setState(()=>({
+				hasError: true,
+				errorMessage: error.data.error.message
+			}));
+
+		} finally {
+			this.setState(()=> ({isLoading: false}));
+		}
+	};
 
 	dismissError=()=>{
 
@@ -166,6 +187,16 @@ export class App extends React.Component {
 		this.setState(()=>({
 			isInfoDisplayed:false,
 			infoMessage:""
+		}));
+	};
+
+	logOutClick = async() =>{
+		await logOut();
+		this.setState(()=>({
+			isUserLoggedIn:false,
+			userDisplayName:"",
+			userEmail:"",
+			userAvatar:"",
 		}));
 	};
 
@@ -197,7 +228,8 @@ export class App extends React.Component {
 			userDisplayName,
 			userEmail,
 			userAvatar,
-			isUserDropdownOpen
+			isUserDropdownOpen,
+			courses,
 		} = this.state;
 
 
@@ -236,10 +268,21 @@ export class App extends React.Component {
 												userAvatar={userAvatar}
 												contentList={
 													isUserDropdownOpen ?
-														<DropdownList/> 
+														<DropdownList
+															onLogOutClick={this.logOutClick}
+														/> 
 														: null}
 											/>
 										</AppBar>
+										{
+											courses &&  courses.map((course)=>{
+												return(
+													<CourseCard
+														key={course.id}
+													/>);
+											})
+										}
+																					
 									</div>
 									:
 									notLoginRoute === "LOGIN" ?

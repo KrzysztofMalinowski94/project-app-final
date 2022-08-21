@@ -7,6 +7,7 @@ import DropdownListItem from "../DropdownListItem/DropdownListItem";
 export const DropdownList = (props) => {
 	const {
 		className,
+		onLogOutClick,
 		...otherProps
 	} = props;
 
@@ -23,6 +24,7 @@ export const DropdownList = (props) => {
 			<DropdownListItem
 				text={"Logout"}
 				icon={"logout"}
+				onClick={onLogOutClick}
 			/>
 
 		</ul>
@@ -30,7 +32,8 @@ export const DropdownList = (props) => {
 };
 
 DropdownList.propTypes = {
-	className: PropTypes.string
+	className: PropTypes.string,
+	onLogOutClick: PropTypes.func
 };
 
 export default DropdownList;
