@@ -1,0 +1,7 @@
+.root {
+    position: relative;
+    top:64px;
+    display: flex;
+    flex-basis: 33%;
+    max-width: 1024px;
+}

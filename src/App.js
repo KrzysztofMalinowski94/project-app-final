@@ -275,12 +275,16 @@ export class App extends React.Component {
 											/>
 										</AppBar>
 										{
-											courses &&  courses.map((course)=>{
-												return(
-													<CourseCard
-														key={course.id}
-													/>);
-											})
+											<CourseList>
+												{
+													courses &&  courses.map((course)=>{
+														return(
+															<CourseCard
+																key={course.id}
+																course={course}
+															/>);
+													})}
+											</CourseList>
 										}
 																					
 									</div>

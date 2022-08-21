@@ -39,3 +39,10 @@
 .primary.contained:hover {
     background-color: #5b5c59;
 }
+
+.contained.primary.disabled, .contained.secondary.disabled, .text.disabled, .disabled {
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.26);
+    box-shadow: none;
+    cursor: default;
+  }
