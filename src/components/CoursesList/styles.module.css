@@ -1,6 +1,4 @@
 .root {
-    position: relative;
-    top:100px;
     display: flex;
     flex-wrap: wrap;
     flex-basis: 33%;

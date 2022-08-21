@@ -9,3 +9,8 @@
       width: calc(100% - 154px);
     }
   }
+
+  
+.searchTextfield{
+  width: 100%;
+}

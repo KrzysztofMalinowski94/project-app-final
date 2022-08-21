@@ -49,7 +49,7 @@ export const DropdownListItem = (props) => {
 DropdownListItem.propTypes = {
 	className: PropTypes.string,
 	text: PropTypes.string,
-	icon: PropTypes.oneOf("logout" , "profile"),
+	icon: PropTypes.oneOf(["logout" , "profile"]),
 	disabled: PropTypes.bool
 };
 

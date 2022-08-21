@@ -1,1 +1,21 @@
-.root {}
+.root {
+    margin-top: 64px;
+}
+
+.contentMainWrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.contentSearchWrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.wrapper {
+    height: calc(100vh - 64px);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }

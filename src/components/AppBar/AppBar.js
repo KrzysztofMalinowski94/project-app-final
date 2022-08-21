@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import classes from "./styles.module.css";
-import Container from "../Container/Container";
 
 export const AppBar = (props) => {
 	const {
@@ -19,9 +18,7 @@ export const AppBar = (props) => {
 			<div
 				className={classes.container}
 			>
-				<Container>
-					{children}
-				</Container>
+				{children}
 			</div>
 		</div>
 	);

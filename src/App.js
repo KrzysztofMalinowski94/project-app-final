@@ -18,6 +18,7 @@ import DropdownList from "./components/DropdownList/DropdownList";
 import getAll from "./api/courses/getAll";
 import CoursesList from "./components/CoursesList";
 import MainLayout from "./components/MainLayout/MainLayout";
+import TextField from "./components/TextField/TextField";
 
 export class App extends React.Component {
   
@@ -230,8 +231,17 @@ export class App extends React.Component {
 			userAvatar,
 			isUserDropdownOpen,
 			courses,
+			searchPhrase
 		} = this.state;
 
+		const searchPhraseUpperCase = searchPhrase.toUpperCase();
+		const filteredCourses = courses && courses.filter((course)=>{
+			return (
+				course.title.toUpperCase().includes(searchPhraseUpperCase) ||
+				course.category.toUpperCase().includes(searchPhraseUpperCase) ||
+				course.description.toUpperCase().includes(searchPhraseUpperCase)
+			);
+		});
 
 		return (
 			<div className="App">
@@ -276,10 +286,18 @@ export class App extends React.Component {
 																: null}
 													/>
 												</>}
+											contentSearch={
+												<TextField
+													className={classes.searchTextfield}
+													placeholder={"Type to Search..."}
+													value={searchPhrase}
+													onChange={(e)=>this.setState(()=>({searchPhrase: e.target.value}))}
+												/>
+											}
 											contentMain= {
 												<>
 													<CoursesList
-														courses={courses}
+														courses={filteredCourses}
 													/>		
 												</>
 											}

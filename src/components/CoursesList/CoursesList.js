@@ -30,7 +30,7 @@ export const CoursesList = (props) => {
 
 CoursesList.propTypes = {
 	className: PropTypes.string,
-	courses:PropTypes.obj
+	courses:PropTypes.array
 };
 
 export default CoursesList;
