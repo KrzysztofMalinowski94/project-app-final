@@ -8,10 +8,12 @@ import Avatar from "../Avatar";
 export const UserDropdown = (props) => {
 	const {
 		className,
-		userDisplayName = "KRIS",
+		userDisplayName,
 		userEmail,
 		userAvatar,
 		contentList,
+		onOpenRequest,
+		onCloseRequest,
 		...otherProps
 	} = props;
 
@@ -22,6 +24,7 @@ export const UserDropdown = (props) => {
 		>
 			<div className={classes.wrapper}>
 				<div
+					onClick={onOpenRequest}
 					className={classes.textWrapper}
 				>
 					<Typography
@@ -46,13 +49,22 @@ export const UserDropdown = (props) => {
 				</div>
 			</div>
 			{
-				contentList ?
-					<div
-						className={classes.listContainer}
-					>
-						{contentList}
-					</div> :
-					null
+				 contentList ?
+				 <>
+				   <div
+					 className={classes.overlay}
+					 onClick={onCloseRequest}
+				   >
+					
+				   </div>
+				   <div
+					 className={classes.listContainer}
+				   >
+					 {contentList}
+				   </div>
+				 </>
+				 :
+				 null
 			}
 		</div>
 	);
@@ -63,7 +75,9 @@ UserDropdown.propTypes = {
 	userDisplayName: PropTypes.string,
 	userEmail: PropTypes.string,
 	userAvatar: PropTypes.string,
-	contentList: PropTypes.node
+	contentList: PropTypes.node,
+	onOpenRequest: PropTypes.func.isRequired,
+	onCloseRequest: PropTypes.func.isRequired,
 };
 
 export default UserDropdown;

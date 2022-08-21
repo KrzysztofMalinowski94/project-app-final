@@ -273,7 +273,8 @@ export class App extends React.Component {
 														className={classes.logo}
 													/>
 													<UserDropdown
-														onClick={()=>this.setState((prevState)=>({isUserDropdownOpen: !prevState.isUserDropdownOpen}))}
+														onOpenRequest={()=>this.setState(()=>({isUserDropdownOpen:true}))}
+														onCloseRequest={()=>this.setState(()=>({isUserDropdownOpen:false}))}
 														className={classes.userDropdown}
 														userDisplayName={userDisplayName}
 														userEmail={userEmail}
