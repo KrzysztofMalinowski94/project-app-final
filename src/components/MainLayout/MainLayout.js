@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import classes from "./styles.module.css";
-import Container from "../Container/Container";
+import AppBar from "../AppBar";
 
-export const AppBar = (props) => {
+export const MainLayout = (props) => {
 	const {
 		className,
-		children,
+		contentAppBar,
+		contentMain,
 		...otherProps
 	} = props;
 
@@ -16,20 +17,18 @@ export const AppBar = (props) => {
 			className={`${classes.root}${className ? ` ${className}` : ""}`}
 			{...otherProps}
 		>
-			<div
-				className={classes.container}
-			>
-				<Container>
-					{children}
-				</Container>
-			</div>
+			<AppBar>
+				{contentAppBar}
+			</AppBar>
+			  {contentMain}
 		</div>
 	);
 };
 
-AppBar.propTypes = {
+MainLayout.propTypes = {
 	className: PropTypes.string,
-	children: PropTypes.node
+	contentAppBar: PropTypes.node,
+	contentMain: PropTypes.node,
 };
 
-export default AppBar;
+export default MainLayout;

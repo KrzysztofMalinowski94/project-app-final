@@ -12,12 +12,12 @@ import CreateAccountForm from "./components/CreateAccountForm/CreateAccountForm"
 import RecoveryPasswordForm from "./components/RecoveryPasswordForm/RecoveryPasswordForm";
 
 import {signIn, signUp, getIdToken, decodeToken, checkIfUserIsLoggedIn, sendPasswordResetEmail, logOut} from "./auth";
-import AppBar from "./components/AppBar/AppBar";
 import Logo from "./svg/Logo";
 import UserDropdown from "./components/UserDropdown/UserDropdown";
 import DropdownList from "./components/DropdownList/DropdownList";
 import getAll from "./api/courses/getAll";
-import CourseCard from "./components/CourseCard";
+import CoursesList from "./components/CoursesList";
+import MainLayout from "./components/MainLayout/MainLayout";
 
 export class App extends React.Component {
   
@@ -256,37 +256,37 @@ export class App extends React.Component {
 
 								isUserLoggedIn ? 
 									<div>
-										<AppBar>
-											<Logo
-												className={classes.logo}
-											/>
-											<UserDropdown
-												onClick={()=>this.setState((prevState)=>({isUserDropdownOpen: !prevState.isUserDropdownOpen}))}
-												className={classes.userDropdown}
-												userDisplayName={userDisplayName}
-												userEmail={userEmail}
-												userAvatar={userAvatar}
-												contentList={
-													isUserDropdownOpen ?
-														<DropdownList
-															onLogOutClick={this.logOutClick}
-														/> 
-														: null}
-											/>
-										</AppBar>
-										{
-											<CourseList>
-												{
-													courses &&  courses.map((course)=>{
-														return(
-															<CourseCard
-																key={course.id}
-																course={course}
-															/>);
-													})}
-											</CourseList>
-										}
-																					
+										<MainLayout
+											contentAppBar={
+												<>
+													<Logo
+														className={classes.logo}
+													/>
+													<UserDropdown
+														onClick={()=>this.setState((prevState)=>({isUserDropdownOpen: !prevState.isUserDropdownOpen}))}
+														className={classes.userDropdown}
+														userDisplayName={userDisplayName}
+														userEmail={userEmail}
+														userAvatar={userAvatar}
+														contentList={
+															isUserDropdownOpen ?
+																<DropdownList
+																	onLogOutClick={this.logOutClick}
+																/> 
+																: null}
+													/>
+												</>}
+											contentMain= {
+												<>
+													<CoursesList
+														courses={courses}
+													/>		
+												</>
+											}
+											
+										>
+										</MainLayout>
+										
 									</div>
 									:
 									notLoginRoute === "LOGIN" ?
