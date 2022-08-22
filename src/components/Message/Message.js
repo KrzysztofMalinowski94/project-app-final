@@ -54,7 +54,6 @@ export const Message = (props) => {
 
 Message.propTypes ={ 
 	className: PropTypes.string,
-	actionClick: PropTypes.func.isRequired,
 	variant: PropTypes.oneOf(["contained","text"]),
 	color: PropTypes.oneOf(["primary","secondary"]),
 	children: PropTypes.node,
