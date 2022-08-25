@@ -30,6 +30,8 @@ export class PageLogin extends React.Component {
 
 	render(){
 		const {
+			onCreateAccountClick,
+			onRecoveryPasswordClick,
 			...otherProps
 		} = this.props;
   
@@ -54,8 +56,8 @@ export class PageLogin extends React.Component {
 						password={loginPassword}
 						passwordError={loginSubmitted ? loginPasswordError : undefined}
 						onLoginClick = {this.onLoginClick}
-						onCreateAccountClick = {()=> this.setState(()=>({notLoginRoute: "CREATE-ACCOUNT"}))}
-						onRecoveryPasswordClick = {()=> this.setState(()=>({notLoginRoute: "FORGOT PASSWORD"}))}
+						onCreateAccountClick = {onCreateAccountClick}
+						onRecoveryPasswordClick = {onRecoveryPasswordClick}
 						onChangeEmail = {(e)=>{
 							this.setState(()=>({
 								loginEmail: e.target.value,
@@ -80,7 +82,9 @@ PageLogin.propTypes = {
 	loginPassword: PropTypes.string,
 	loginPasswordError: PropTypes.string,
 	loginSubmitted: PropTypes.bool,
-	onLoginClick:PropTypes.func
+	onLoginClick:PropTypes.func,
+	onCreateAccountClick: PropTypes.func,
+	onRecoveryPasswordClick: PropTypes.func,
 };
 
 export default PageLogin;

@@ -30,7 +30,7 @@ export const RecoveryPasswordForm = (props) => {
 			<Typography
 				className={classes.greeter}
 				variant={"h1"}>
-        Create new account
+        Recover Password
 			</Typography>
 			<TextField
 				className={classes.textfield}

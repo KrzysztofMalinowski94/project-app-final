@@ -17,7 +17,7 @@ export const CoursesList = (props) => {
 			{...otherProps}
 		>										
 			{
-				courses.length === 0 ?
+				(!courses || courses.length === 0) ?
 					"NO COURSES" :
 					courses &&  courses.map((course)=>{
 						return(
